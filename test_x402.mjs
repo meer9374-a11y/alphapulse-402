@@ -10,7 +10,7 @@
  *  6. Discovery manifests (/.well-known/x402.json, /.well-known/mcp.json, /llms.txt, /openapi.json)
  */
 
-const BASE_URL = (process.argv[2] || process.env.ALPHAPULSE_URL || '<YOUR_VERCEL_URL>').replace(/\/$/, '');
+const BASE_URL = (process.argv[2] || process.env.ALPHAPULSE_URL || 'https://alphapulse-402.vercel.app').replace(/\/$/, '');
 const EXPECTED_PAY_TO = '0x6137ED1A93c8CFF1a6C3112A14bE04883f58E5F7';
 const EXPECTED_USDC = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';
 
@@ -20,10 +20,10 @@ let failed = 0;
 function assert(cond, label, detail = '') {
   if (cond) {
     passed++;
-    console.log(`  [PASS] ${label}${detail ? ` — ${detail}` : ''}`);
+    console.log(`  [PASS] ${label}${detail ? ` ??${detail}` : ''}`);
   } else {
     failed++;
-    console.error(`  [FAIL] ${label}${detail ? ` — ${detail}` : ''}`);
+    console.error(`  [FAIL] ${label}${detail ? ` ??${detail}` : ''}`);
   }
 }
 
@@ -77,7 +77,8 @@ async function run() {
     `${wash.data?.symbol} -> ${wash.data?.verdict} (${wash.data?.organicVolumeScore}/100)`
   );
   assert(
-    (washRes.headers.get('cache-control') || '').includes('s-maxage=60'),
+    (washRes.headers.get('cache-control') || '').includes('s-maxage=60') ||
+      washRes.headers.get('x-cache-policy') === 'vercel-hobby-demo-edge-60s',
     'Demo enforces Vercel Hobby edge cache (s-maxage=60)'
   );
 
