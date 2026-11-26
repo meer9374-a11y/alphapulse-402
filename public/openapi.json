@@ -1,0 +1,87 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "AlphaPulse-402 Quantitative Alpha & Wash-Trade Detection API",
+    "version": "1.0.0",
+    "description": "Ultra-Low-Cost Remote MCP & x402 Quantitative Alpha Node on Base ($0.004-$0.005 USDC, Zero API Keys).",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "<YOUR_VERCEL_URL>",
+      "description": "AlphaPulse-402 Production Node (Base Mainnet)"
+    }
+  ],
+  "paths": {
+    "/api/v1/health": {
+      "get": {
+        "operationId": "getHealth",
+        "summary": "Live Base RPC latency, uptime, pricing table, and Vercel Hobby quota status",
+        "responses": {
+          "200": { "description": "Healthy status payload" }
+        }
+      }
+    },
+    "/api/v1/wash-trade-detector": {
+      "get": {
+        "operationId": "detectWashTrading",
+        "summary": "Base DEX Anti-Spoofing & Wash-Trade Filter ($0.004 USDC)",
+        "parameters": [
+          { "name": "pair", "in": "query", "schema": { "type": "string" }, "description": "Base DEX pair address (0x...)" },
+          { "name": "token", "in": "query", "schema": { "type": "string" }, "description": "Base token address (0x...)" },
+          { "name": "demo", "in": "query", "schema": { "type": "boolean" }, "description": "Free edge-cached preview mode" },
+          { "name": "X-Payment-Tx", "in": "header", "schema": { "type": "string" }, "description": "Base USDC transfer tx hash (>= 4000 units)" }
+        ],
+        "responses": {
+          "200": { "description": "Wash-trade score and ORGANIC_DEMAND vs BOT_WASH_TRAP verdict" },
+          "402": { "description": "x402 Payment Required instructions (0.004 USDC on Base)" }
+        }
+      }
+    },
+    "/api/v1/smart-money-velocity": {
+      "get": {
+        "operationId": "measureSmartMoneyVelocity",
+        "summary": "Net Inflow Acceleration & Momentum Exhaustion Radar ($0.005 USDC)",
+        "parameters": [
+          { "name": "pair", "in": "query", "schema": { "type": "string" } },
+          { "name": "token", "in": "query", "schema": { "type": "string" } },
+          { "name": "demo", "in": "query", "schema": { "type": "boolean" } },
+          { "name": "X-Payment-Tx", "in": "header", "schema": { "type": "string" }, "description": "Base USDC transfer tx hash (>= 5000 units)" }
+        ],
+        "responses": {
+          "200": { "description": "Velocity metrics and ENTER_MOMENTUM / HOLD_TREND / TAKE_PROFIT_EXHAUSTION verdict" },
+          "402": { "description": "x402 Payment Required instructions (0.005 USDC on Base)" }
+        }
+      }
+    },
+    "/api/v1/lp-impermanent-loss-guard": {
+      "get": {
+        "operationId": "guardLpImpermanentLoss",
+        "summary": "Automated Aerodrome & Uniswap V3 LP Rebalance Shield ($0.004 USDC)",
+        "parameters": [
+          { "name": "pair", "in": "query", "schema": { "type": "string" } },
+          { "name": "token", "in": "query", "schema": { "type": "string" } },
+          { "name": "feeBps", "in": "query", "schema": { "type": "number" } },
+          { "name": "demo", "in": "query", "schema": { "type": "boolean" } },
+          { "name": "X-Payment-Tx", "in": "header", "schema": { "type": "string" }, "description": "Base USDC transfer tx hash (>= 4000 units)" }
+        ],
+        "responses": {
+          "200": { "description": "Fee-APR vs IL metrics and FARM_FEES vs EXIT_LP_NOW verdict" },
+          "402": { "description": "x402 Payment Required instructions (0.004 USDC on Base)" }
+        }
+      }
+    },
+    "/mcp": {
+      "post": {
+        "operationId": "mcpJsonRpc",
+        "summary": "Remote MCP JSON-RPC 2.0 endpoint (2024-11-05)",
+        "responses": {
+          "200": { "description": "JSON-RPC 2.0 response" }
+        }
+      }
+    }
+  }
+}

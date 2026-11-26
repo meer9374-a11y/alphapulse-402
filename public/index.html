@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AlphaPulse-402 — Base L2 x402 & Remote MCP Quantitative Alpha Node</title>
+  <meta name="description" content="Ultra-Low-Cost Remote MCP & x402 Quantitative Alpha Node on Base ($0.004-$0.005 USDC, Zero API Keys): Real-time DEX wash-trade detector, smart-money inflow velocity radar, and LP impermanent loss guard." />
+  <style>
+    :root {
+      --bg: #070b14;
+      --surface: #0f172a;
+      --surface-2: #162033;
+      --border: #24324d;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --green: #10b981;
+      --red: #f43f5e;
+      --amber: #f59e0b;
+      --purple: #a855f7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: radial-gradient(circle at top right, #111c36 0%, var(--bg) 55%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    .container { max-width: 1120px; margin: 0 auto; padding: 32px 20px 64px; }
+    header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 28px; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #0052ff, #a855f7); display: grid; place-items: center; font-weight: 800; font-size: 18px; color: #fff; }
+    h1 { margin: 0; font-size: 24px; letter-spacing: -0.02em; }
+    .subtitle { color: var(--muted); font-size: 14px; margin-top: 2px; }
+    .pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); font-size: 13px; color: var(--muted); }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+    .hero { background: linear-gradient(180deg, rgba(56,189,248,0.08), rgba(15,23,42,0.85)); border: 1px solid var(--border); border-radius: 16px; padding: 26px; margin-bottom: 28px; }
+    .hero h2 { margin: 0 0 10px; font-size: 28px; letter-spacing: -0.02em; }
+    .hero p { margin: 0 0 18px; color: #cbd5e1; max-width: 820px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 10px; }
+    .badge { font-size: 12px; font-weight: 600; padding: 5px 11px; border-radius: 8px; background: var(--surface-2); border: 1px solid var(--border); color: var(--accent); }
+    .badge.green { color: var(--green); }
+    .badge.purple { color: var(--purple); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+    .card h3 { margin: 0 0 6px; font-size: 17px; display: flex; justify-content: space-between; align-items: center; }
+    .price { font-size: 13px; font-weight: 700; color: var(--green); background: rgba(16,185,129,0.12); padding: 3px 9px; border-radius: 6px; }
+    .card p { margin: 8px 0 12px; color: var(--muted); font-size: 14px; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px; background: #0a1020; padding: 2px 6px; border-radius: 5px; color: #93c5fd; }
+    .section-title { font-size: 20px; margin: 28px 0 14px; display: flex; align-items: center; justify-content: space-between; }
+    .sandbox { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 22px; margin-bottom: 28px; }
+    .controls { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+    select, input, button {
+      font-family: inherit;
+      font-size: 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text);
+      padding: 10px 14px;
+    }
+    input { flex: 1; min-width: 220px; }
+    button { cursor: pointer; font-weight: 600; transition: 0.15s ease; }
+    button.primary { background: linear-gradient(135deg, #0052ff, #2563eb); border-color: #3b82f6; color: #fff; }
+    button.primary:hover { filter: brightness(1.1); }
+    button.ghost:hover { border-color: var(--accent); color: var(--accent); }
+    pre {
+      margin: 0;
+      padding: 16px;
+      background: #060a13;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12.5px;
+      color: #cbd5e1;
+      max-height: 420px;
+    }
+    .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .tab { padding: 8px 14px; border-radius: 8px; background: var(--surface-2); border: 1px solid var(--border); color: var(--muted); cursor: pointer; font-size: 13px; font-weight: 600; }
+    .tab.active { background: rgba(56,189,248,0.14); border-color: var(--accent); color: var(--accent); }
+    .code-wrap { position: relative; }
+    .copy-btn { position: absolute; top: 10px; right: 10px; padding: 6px 11px; font-size: 12px; background: var(--surface-2); border: 1px solid var(--border); color: var(--text); border-radius: 7px; cursor: pointer; }
+    .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 13px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">α</div>
+        <div>
+          <h1>AlphaPulse-402</h1>
+          <div class="subtitle">Ultra-Low-Cost x402 &amp; Remote MCP Quantitative Alpha Node on Base L2</div>
+        </div>
+      </div>
+      <div class="pill" id="health-pill">
+        <span class="dot"></span>
+        <span>Checking Base Mainnet RPC...</span>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h2>Stop Buying Fake DEX Volume. Pay $0.004 USDC Per Signal.</h2>
+      <p>
+        Zero API keys. Zero subscriptions. Pure stateless Base Mainnet USDC verification via <strong>x402</strong> &amp; <strong>MCP 2024-11-05</strong>.
+        Built for sniper bots, Coinbase AgentKit, ElizaOS, and autonomous LP agents.
+      </p>
+      <div class="badges">
+        <span class="badge green">PayTo: 0x6137ED1A93c8CFF1a6C3112A14bE04883f58E5F7</span>
+        <span class="badge">USDC Base: 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913</span>
+        <span class="badge purple">Remote MCP: /mcp</span>
+        <span class="badge">Anti-Replay: 600s Stateless</span>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h3>Wash-Trade Detector <span class="price">$0.004 USDC</span></h3>
+        <code>GET /api/v1/wash-trade-detector</code>
+        <p>Cross-checks DexScreener buy/sell symmetry, vol/liq churn, repetitive ticket sizes, and Base RPC logs to emit <code>ORGANIC_DEMAND</code> vs <code>BOT_WASH_TRAP</code>.</p>
+      </div>
+      <div class="card">
+        <h3>Smart-Money Velocity <span class="price">$0.005 USDC</span></h3>
+        <code>GET /api/v1/smart-money-velocity</code>
+        <p>Tracks 5m/1h buy-pressure acceleration, whale net inflow USD/min, and momentum exhaustion for <code>ENTER_MOMENTUM</code>, <code>HOLD_TREND</code>, or <code>TAKE_PROFIT_EXHAUSTION</code>.</p>
+      </div>
+      <div class="card">
+        <h3>LP IL Rebalance Guard <span class="price">$0.004 USDC</span></h3>
+        <code>GET /api/v1/lp-impermanent-loss-guard</code>
+        <p>Compares live Aerodrome &amp; Uniswap V3 fee-APR against realized volatility impermanent loss to trigger <code>FARM_FEES</code> vs <code>EXIT_LP_NOW</code>.</p>
+      </div>
+    </section>
+
+    <h2 class="section-title">Live Interactive Quant Sandbox <span style="font-size:13px;color:var(--muted);font-weight:400;">Edge-cached ?demo=true preview</span></h2>
+    <section class="sandbox">
+      <div class="controls">
+        <select id="endpoint-select">
+          <option value="/api/v1/wash-trade-detector">/api/v1/wash-trade-detector ($0.004)</option>
+          <option value="/api/v1/smart-money-velocity">/api/v1/smart-money-velocity ($0.005)</option>
+          <option value="/api/v1/lp-impermanent-loss-guard">/api/v1/lp-impermanent-loss-guard ($0.004)</option>
+          <option value="/api/v1/health">/api/v1/health (Free)</option>
+        </select>
+        <input id="pair-input" type="text" placeholder="Optional Base pair 0x... (leave blank for live auto-scan)" />
+        <button class="primary" id="run-demo-btn">Run Live Demo</button>
+        <button class="ghost" id="test-402-btn">Inspect 402 Invoice</button>
+      </div>
+      <pre id="sandbox-output">// Click "Run Live Demo" to stream live Base DEX quantitative alpha...</pre>
+    </section>
+
+    <h2 class="section-title">1-Click Plug-and-Play Agent Integrations</h2>
+    <section class="sandbox">
+      <div class="tabs">
+        <button class="tab active" data-tab="mcp">Claude / Cursor MCP</button>
+        <button class="tab" data-tab="agentkit">Coinbase AgentKit</button>
+        <button class="tab" data-tab="eliza">ElizaOS Plugin</button>
+        <button class="tab" data-tab="python">LangChain Python</button>
+      </div>
+      <div class="code-wrap">
+        <button class="copy-btn" id="copy-snippet-btn">Copy</button>
+        <pre id="snippet-code"></pre>
+      </div>
+    </section>
+
+    <div class="footer-links">
+      <a href="/.well-known/x402.json" target="_blank">/.well-known/x402.json</a>
+      <a href="/.well-known/mcp.json" target="_blank">/.well-known/mcp.json</a>
+      <a href="/llms.txt" target="_blank">/llms.txt</a>
+      <a href="/openapi.json" target="_blank">/openapi.json</a>
+      <a href="/api/v1/health" target="_blank">/api/v1/health</a>
+      <a href="https://github.com/meer9374-a11y/alphapulse-402" target="_blank">GitHub Repository (MIT)</a>
+    </div>
+  </div>
+
+  <script>
+    const ORIGIN = window.location.origin;
+    const SNIPPETS = {
+      mcp: JSON.stringify({
+        mcpServers: {
+          "alphapulse-402": {
+            url: `${ORIGIN}/mcp`,
+            transport: "http"
+          }
+        }
+      }, null, 2),
+      agentkit: `// examples/coinbase_agentkit_alpha.ts
+const res = await fetch("${ORIGIN}/api/v1/wash-trade-detector?pair=" + pairAddress);
+if (res.status === 402) {
+  const invoice = await res.json();
+  // Send 0.004 USDC (4000 base units) on Base to invoice.payTo
+  const { txHash } = await wallet.transferErc20({
+    tokenAddress: invoice.asset,
+    to: invoice.payTo,
+    amountBaseUnits: invoice.maxAmountRequired
+  });
+  const alpha = await fetch("${ORIGIN}/api/v1/wash-trade-detector?pair=" + pairAddress, {
+    headers: { "X-Payment-Tx": txHash }
+  }).then(r => r.json());
+  if (alpha.data.verdict === "BOT_WASH_TRAP") throw new Error("Blocked fake pump!");
+}`,
+      eliza: `// examples/elizaos_alpha_action.ts
+export const alphaPulseWashCheckAction = {
+  name: "ALPHAPULSE_WASH_CHECK",
+  description: "Checks Base DEX wash trading via AlphaPulse-402 ($0.004 USDC)",
+  handler: async (_rt, msg, _state, opts, cb) => {
+    const res = await fetch("${ORIGIN}/api/v1/wash-trade-detector?demo=true");
+    const { data } = await res.json();
+    await cb?.({ text: \`\${data.symbol}: \${data.verdict} (Score \${data.organicVolumeScore}/100)\` });
+  }
+};`,
+      python: `# examples/langchain_x402_alpha.py
+import urllib.request, json
+url = "${ORIGIN}/api/v1/wash-trade-detector?demo=true"
+data = json.loads(urllib.request.urlopen(url).read())
+print(data["data"]["symbol"], data["data"]["verdict"], data["data"]["organicVolumeScore"])`
+    };
+
+    const snippetEl = document.getElementById('snippet-code');
+    let activeTab = 'mcp';
+    function renderSnippet() { snippetEl.textContent = SNIPPETS[activeTab]; }
+    renderSnippet();
+
+    document.querySelectorAll('.tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeTab = btn.dataset.tab;
+        renderSnippet();
+      });
+    });
+
+    document.getElementById('copy-snippet-btn').addEventListener('click', async () => {
+      await navigator.clipboard.writeText(SNIPPETS[activeTab]);
+      const btn = document.getElementById('copy-snippet-btn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy', 1500);
+    });
+
+    const outEl = document.getElementById('sandbox-output');
+    async function callSandbox(demo) {
+      const ep = document.getElementById('endpoint-select').value;
+      const pair = document.getElementById('pair-input').value.trim();
+      const params = new URLSearchParams();
+      if (pair) params.set('pair', pair);
+      if (demo && ep !== '/api/v1/health') params.set('demo', 'true');
+      const qs = params.toString();
+      const url = `${ep}${qs ? '?' + qs : ''}`;
+      outEl.textContent = `// Fetching ${url} ...`;
+      try {
+        const res = await fetch(url);
+        const json = await res.json();
+        outEl.textContent = `// HTTP ${res.status} ${res.statusText}\n` + JSON.stringify(json, null, 2);
+      } catch (err) {
+        outEl.textContent = `// Error: ${err.message}`;
+      }
+    }
+
+    document.getElementById('run-demo-btn').addEventListener('click', () => callSandbox(true));
+    document.getElementById('test-402-btn').addEventListener('click', () => callSandbox(false));
+
+    fetch('/api/v1/health').then(r => r.json()).then(h => {
+      const pill = document.getElementById('health-pill');
+      pill.innerHTML = `<span class="dot"></span><span>Base RPC: ${h.baseRpc?.latencyMs ?? '--'}ms · Block #${h.baseRpc?.latestBlock ?? '--'}</span>`;
+    }).catch(() => {});
+  </script>
+</body>
+</html>
