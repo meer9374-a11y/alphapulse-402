@@ -11,7 +11,7 @@
   },
   "servers": [
     {
-      "url": "<YOUR_VERCEL_URL>",
+      "url": "https://alphapulse-402.vercel.app",
       "description": "AlphaPulse-402 Production Node (Base Mainnet)"
     }
   ],

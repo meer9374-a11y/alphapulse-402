@@ -1,11 +1,11 @@
-# AlphaPulse-402 — Quantitative Alpha & Wash-Trade Detection Node on Base L2
+# AlphaPulse-402 ??Quantitative Alpha & Wash-Trade Detection Node on Base L2
 
-> Ultra-Low-Cost Remote MCP & x402 Quantitative Alpha Node on Base ($0.004–$0.005 USDC, Zero API Keys): Real-time DEX wash-trade detector, smart-money inflow velocity radar, and LP impermanent loss guard with ready-to-use Coinbase AgentKit, ElizaOS, and Claude/Cursor plugins.
+> Ultra-Low-Cost Remote MCP & x402 Quantitative Alpha Node on Base ($0.004??0.005 USDC, Zero API Keys): Real-time DEX wash-trade detector, smart-money inflow velocity radar, and LP impermanent loss guard with ready-to-use Coinbase AgentKit, ElizaOS, and Claude/Cursor plugins.
 
 ## Base URL & Payment Settlement
-- Live Endpoint: <YOUR_VERCEL_URL>
-- Remote MCP (JSON-RPC 2.0, 2024-11-05): <YOUR_VERCEL_URL>/mcp
-- Health & Live RPC Status: <YOUR_VERCEL_URL>/api/v1/health
+- Live Endpoint: https://alphapulse-402.vercel.app
+- Remote MCP (JSON-RPC 2.0, 2024-11-05): https://alphapulse-402.vercel.app/mcp
+- Health & Live RPC Status: https://alphapulse-402.vercel.app/api/v1/health
 - Network: Base Mainnet (chainId: 8453)
 - Asset: USDC (`0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913`)
 - PayTo Wallet: `0x6137ED1A93c8CFF1a6C3112A14bE04883f58E5F7`
@@ -13,18 +13,18 @@
 - Free Preview: Append `?demo=true` (edge-cached 60s)
 
 ## Paid Endpoints
-1. `GET /api/v1/wash-trade-detector` — **0.004 USDC** (`4000` base units)
+1. `GET /api/v1/wash-trade-detector` ??**0.004 USDC** (`4000` base units)
    - Query: `?pair=0x...` or `?token=0x...` (or `?demo=true`)
    - Output: `organicVolumeScore` (0-100), `ORGANIC_DEMAND` vs `BOT_WASH_TRAP`, buy/sell symmetry, volume-to-liquidity ratio, Base RPC log entropy.
-2. `GET /api/v1/smart-money-velocity` — **0.005 USDC** (`5000` base units)
+2. `GET /api/v1/smart-money-velocity` ??**0.005 USDC** (`5000` base units)
    - Query: `?pair=0x...` or `?token=0x...` (or `?demo=true`)
    - Output: `pressureAcceleration`, `whaleNetInflowUsdPerMin`, `exhaustionIndex`, verdict (`ENTER_MOMENTUM`, `HOLD_TREND`, `TAKE_PROFIT_EXHAUSTION`).
-3. `GET /api/v1/lp-impermanent-loss-guard` — **0.004 USDC** (`4000` base units)
+3. `GET /api/v1/lp-impermanent-loss-guard` ??**0.004 USDC** (`4000` base units)
    - Query: `?pair=0x...` or `?token=0x...&feeBps=30` (or `?demo=true`)
    - Output: `estimatedFeeAprPct`, `effectiveClIl24hPct`, `netLpYieldAprPct`, verdict (`FARM_FEES` vs `EXIT_LP_NOW`).
 
 ## Discovery & Machine-Readable Specs
-- x402 Manifest: <YOUR_VERCEL_URL>/.well-known/x402.json
-- MCP Manifest: <YOUR_VERCEL_URL>/.well-known/mcp.json
-- OpenAPI 3.1: <YOUR_VERCEL_URL>/openapi.json
+- x402 Manifest: https://alphapulse-402.vercel.app/.well-known/x402.json
+- MCP Manifest: https://alphapulse-402.vercel.app/.well-known/mcp.json
+- OpenAPI 3.1: https://alphapulse-402.vercel.app/openapi.json
 - Source & Framework Examples: https://github.com/meer9374-a11y/alphapulse-402
