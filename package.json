@@ -1,0 +1,26 @@
+{
+  "name": "alphapulse-402",
+  "version": "1.0.0",
+  "description": "Ultra-Low-Cost Remote MCP & x402 Quantitative Alpha Node on Base ($0.004-$0.005 USDC, Zero API Keys): Real-time DEX wash-trade detector, smart-money inflow velocity radar, and LP impermanent loss guard.",
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "test": "node test_x402.mjs"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "x402",
+    "base",
+    "ai-agents",
+    "defi-trading",
+    "wash-trading",
+    "coinbase-agentkit",
+    "elizaos"
+  ],
+  "author": "meer9374-a11y",
+  "license": "MIT",
+  "dependencies": {}
+}
