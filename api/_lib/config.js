@@ -1,7 +1,7 @@
 export const CONFIG = {
   serviceName: 'AlphaPulse-402',
   version: '1.0.0',
-  baseUrl: '<YOUR_VERCEL_URL>',
+  baseUrl: 'https://alphapulse-402.vercel.app',
   payTo: '0x6137ED1A93c8CFF1a6C3112A14bE04883f58E5F7',
   network: 'base',
   chainId: 8453,

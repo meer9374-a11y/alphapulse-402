@@ -57,8 +57,11 @@ export function analyzeWashTrade(pair, rpcStats = {}) {
   } else if (volToLiqH1 > 1.2) {
     score -= 20;
     flags.push(`ELEVATED_1H_VOL_LIQ_RATIO (${round(volToLiqH1, 2)}x)`);
+  } else if (volToLiqH24 > 50.0) {
+    score -= 44;
+    flags.push(`EXTREME_24H_LIQUIDITY_CHURN (${round(volToLiqH24, 2)}x)`);
   } else if (volToLiqH24 > 8.0) {
-    score -= 18;
+    score -= 22;
     flags.push(`HIGH_24H_TURNOVER (${round(volToLiqH24, 2)}x)`);
   }
 
