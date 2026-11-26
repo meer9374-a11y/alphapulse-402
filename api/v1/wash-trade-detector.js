@@ -20,9 +20,13 @@ export default async function handler(req, res) {
       // Live demo mode: scan active Base DEX pools (excluding major blue-chip stables/wrapped majors)
       // and surface the clearest BOT_WASH_TRAP
       const BLUE_CHIPS = new Set(['WETH', 'USDC', 'USDBC', 'CBBTC', 'CBETH', 'WSTETH', 'DAI', 'USDT']);
-      const pools = await fetchActiveBasePools(['base meme', 'base pepe', 'base ai', 'base dog']);
-      const candidates = pools.filter((p) => !BLUE_CHIPS.has((p.baseToken?.symbol || '').toUpperCase()));
-      const poolList = candidates.length > 0 ? candidates : pools;
+      const pools = await fetchActiveBasePools(['base meme', 'base pepe', 'base ai', 'aerodrome base']);
+      const activePools = pools.filter(
+        (p) =>
+          !BLUE_CHIPS.has((p.baseToken?.symbol || '').toUpperCase()) &&
+          (p.txns?.h1?.buys || 0) + (p.txns?.h1?.sells || 0) >= 10
+      );
+      const poolList = activePools.length > 0 ? activePools : pools;
       if (poolList.length > 0) {
         const scored = poolList.map((p) => ({ pair: p, prelim: analyzeWashTrade(p) }));
         scored.sort((a, b) => a.prelim.organicVolumeScore - b.prelim.organicVolumeScore);
