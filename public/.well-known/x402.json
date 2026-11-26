@@ -1,0 +1,39 @@
+{
+  "x402Version": 1,
+  "name": "AlphaPulse-402",
+  "description": "Ultra-Low-Cost Remote MCP & x402 Quantitative Alpha Node on Base ($0.004-$0.005 USDC, Zero API Keys): Real-time DEX wash-trade detector, smart-money inflow velocity radar, and LP impermanent loss guard.",
+  "network": "base",
+  "chainId": 8453,
+  "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "payTo": "0x6137ED1A93c8CFF1a6C3112A14bE04883f58E5F7",
+  "paymentHeader": "X-Payment-Tx",
+  "antiReplayWindowSeconds": 600,
+  "mcpEndpoint": "<YOUR_VERCEL_URL>/mcp",
+  "healthEndpoint": "<YOUR_VERCEL_URL>/api/v1/health",
+  "endpoints": [
+    {
+      "path": "/api/v1/wash-trade-detector",
+      "url": "<YOUR_VERCEL_URL>/api/v1/wash-trade-detector",
+      "method": "GET",
+      "priceUsdc": "0.004",
+      "maxAmountRequired": "4000",
+      "description": "Anti-Spoofing Wash-Trade Filter returning organicVolumeScore (0-100) and ORGANIC_DEMAND vs BOT_WASH_TRAP."
+    },
+    {
+      "path": "/api/v1/smart-money-velocity",
+      "url": "<YOUR_VERCEL_URL>/api/v1/smart-money-velocity",
+      "method": "GET",
+      "priceUsdc": "0.005",
+      "maxAmountRequired": "5000",
+      "description": "Net Inflow Acceleration Radar returning ENTER_MOMENTUM, HOLD_TREND, or TAKE_PROFIT_EXHAUSTION."
+    },
+    {
+      "path": "/api/v1/lp-impermanent-loss-guard",
+      "url": "<YOUR_VERCEL_URL>/api/v1/lp-impermanent-loss-guard",
+      "method": "GET",
+      "priceUsdc": "0.004",
+      "maxAmountRequired": "4000",
+      "description": "Automated LP Rebalance Shield for Aerodrome & Uniswap V3 on Base returning FARM_FEES vs EXIT_LP_NOW."
+    }
+  ]
+}

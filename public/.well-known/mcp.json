@@ -1,0 +1,36 @@
+{
+  "name": "alphapulse-402",
+  "displayName": "AlphaPulse-402",
+  "version": "1.0.0",
+  "description": "Ultra-Low-Cost Remote MCP & x402 Quantitative Alpha Node on Base ($0.004-$0.005 USDC, Zero API Keys): Real-time DEX wash-trade detector, smart-money inflow velocity radar, and LP impermanent loss guard.",
+  "protocolVersion": "2024-11-05",
+  "transport": "streamable-http",
+  "endpoint": "<YOUR_VERCEL_URL>/mcp",
+  "repository": "https://github.com/meer9374-a11y/alphapulse-402",
+  "license": "MIT",
+  "authentication": {
+    "type": "x402",
+    "network": "base",
+    "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "payTo": "0x6137ED1A93c8CFF1a6C3112A14bE04883f58E5F7",
+    "header": "X-Payment-Tx",
+    "freeDemoSupported": true
+  },
+  "tools": [
+    {
+      "name": "detect_wash_trading",
+      "priceUsdc": "0.004",
+      "description": "Detect Base DEX wash trading and volume spoofing (organicVolumeScore 0-100, ORGANIC_DEMAND vs BOT_WASH_TRAP)."
+    },
+    {
+      "name": "measure_smart_money_velocity",
+      "priceUsdc": "0.005",
+      "description": "Measure 5m/1h buy-to-sell pressure acceleration, whale net inflow velocity, and exhaustion (ENTER_MOMENTUM, HOLD_TREND, TAKE_PROFIT_EXHAUSTION)."
+    },
+    {
+      "name": "guard_lp_impermanent_loss",
+      "priceUsdc": "0.004",
+      "description": "Compare live fee-APR vs volatility-driven impermanent loss for Base Aerodrome and Uniswap V3 LPs (FARM_FEES vs EXIT_LP_NOW)."
+    }
+  ]
+}
