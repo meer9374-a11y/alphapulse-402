@@ -1,11 +1,11 @@
 /**
- * AlphaPulse-402 — ElizaOS (ai16z) Custom Alpha-Scoring Action Plugin
+ * AlphaPulse-402 ??ElizaOS (ai16z) Custom Alpha-Scoring Action Plugin
  *
  * Drop this Action into your ElizaOS character plugin to give your trading
  * agent real-time Base wash-trade detection and LP rebalance intelligence.
  */
 
-const ALPHAPULSE_URL = '<YOUR_VERCEL_URL>';
+const ALPHAPULSE_URL = 'https://alphapulse-402.vercel.app';
 
 export interface ElizaActionContext {
   pairAddress?: string;

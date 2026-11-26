@@ -1,5 +1,5 @@
 """
-AlphaPulse-402 — Python x402 Payment Wrapper for LangChain / AutoGPT Quant Bots
+AlphaPulse-402 ??Python x402 Payment Wrapper for LangChain / AutoGPT Quant Bots
 
 Zero-dependency standard library + optional web3.py payment hook for calling
 AlphaPulse-402 ($0.004-$0.005 USDC on Base L2) directly from Python agents.
@@ -10,7 +10,7 @@ import urllib.parse
 import urllib.request
 from typing import Callable, Optional
 
-ALPHAPULSE_URL = "<YOUR_VERCEL_URL>"
+ALPHAPULSE_URL = "https://alphapulse-402.vercel.app"
 PAY_TO = "0x6137ED1A93c8CFF1a6C3112A14bE04883f58E5F7"
 USDC_BASE = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
 

@@ -1,11 +1,11 @@
 /**
- * AlphaPulse-402 — Coinbase AgentKit Pre-Entry Wash-Trade & Momentum Filter
+ * AlphaPulse-402 ??Coinbase AgentKit Pre-Entry Wash-Trade & Momentum Filter
  *
- * Automatically pays $0.004–$0.005 USDC on Base L2 via x402 before your
+ * Automatically pays $0.004??0.005 USDC on Base L2 via x402 before your
  * autonomous trading agent enters a DEX swap, blocking BOT_WASH_TRAP pools.
  */
 
-const ALPHAPULSE_BASE_URL = '<YOUR_VERCEL_URL>';
+const ALPHAPULSE_BASE_URL = 'https://alphapulse-402.vercel.app';
 const USDC_BASE_ADDRESS = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';
 const ALPHAPULSE_PAY_TO = '0x6137ED1A93c8CFF1a6C3112A14bE04883f58E5F7';
 
