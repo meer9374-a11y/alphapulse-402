@@ -8,12 +8,12 @@
   "payTo": "0x6137ED1A93c8CFF1a6C3112A14bE04883f58E5F7",
   "paymentHeader": "X-Payment-Tx",
   "antiReplayWindowSeconds": 600,
-  "mcpEndpoint": "<YOUR_VERCEL_URL>/mcp",
-  "healthEndpoint": "<YOUR_VERCEL_URL>/api/v1/health",
+  "mcpEndpoint": "https://alphapulse-402.vercel.app/mcp",
+  "healthEndpoint": "https://alphapulse-402.vercel.app/api/v1/health",
   "endpoints": [
     {
       "path": "/api/v1/wash-trade-detector",
-      "url": "<YOUR_VERCEL_URL>/api/v1/wash-trade-detector",
+      "url": "https://alphapulse-402.vercel.app/api/v1/wash-trade-detector",
       "method": "GET",
       "priceUsdc": "0.004",
       "maxAmountRequired": "4000",
@@ -21,7 +21,7 @@
     },
     {
       "path": "/api/v1/smart-money-velocity",
-      "url": "<YOUR_VERCEL_URL>/api/v1/smart-money-velocity",
+      "url": "https://alphapulse-402.vercel.app/api/v1/smart-money-velocity",
       "method": "GET",
       "priceUsdc": "0.005",
       "maxAmountRequired": "5000",
@@ -29,7 +29,7 @@
     },
     {
       "path": "/api/v1/lp-impermanent-loss-guard",
-      "url": "<YOUR_VERCEL_URL>/api/v1/lp-impermanent-loss-guard",
+      "url": "https://alphapulse-402.vercel.app/api/v1/lp-impermanent-loss-guard",
       "method": "GET",
       "priceUsdc": "0.004",
       "maxAmountRequired": "4000",
